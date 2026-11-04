@@ -1,6 +1,6 @@
 # Supported platforms and verification
 
-File Review is an early public source edition. Install from the checkout as described in [README](../README.md); no PyPI release is provided.
+File Review is an early public edition. See [README](../README.md) for release and source installation instructions and the PyPI project page for available versions.
 
 ## Platform support
 

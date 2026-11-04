@@ -1,10 +1,5 @@
 # Changelog
 
-## Unreleased
-
-- Add an optional agent skill for interpreting local review briefings, with separate installation of the Python command.
-- Verify that a wheel rebuilt from the source archive installs and runs offline.
-
 ## 0.1.0 — initial public edition
 
 - Independent, history-free source snapshot with synthetic examples and no personal project list.
@@ -13,5 +8,7 @@
 - Bounded regular-file measurement, visible coverage gaps and safe handling of unusual filenames.
 - Language-independent review briefings, optional task context, content fingerprints and expandable path evidence.
 - Installable command, public contribution guidance and macOS/Linux CI configuration.
+- Optional agent skill for interpreting local review briefings, with separate installation of the Python command.
+- Source-archive rebuild checks and an explicitly triggered PyPI publication workflow.
 
-This is the first public edition, not a claim that a release has already been uploaded or published.
+Check the PyPI project page and GitHub Actions for actual publication status.
