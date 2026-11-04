@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Simplify the optional skill's CLI installation using the published PyPI package.
+
 ## 0.1.0 — initial public edition
 
 - Independent, history-free source snapshot with synthetic examples and no personal project list.
