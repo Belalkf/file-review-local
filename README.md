@@ -1,5 +1,7 @@
 # File Review
 
+[![Checks](https://github.com/Belalkf/file-review-local/actions/workflows/ci.yml/badge.svg)](https://github.com/Belalkf/file-review-local/actions/workflows/ci.yml)
+
 **Find the files worth a closer look. Decide what should stay together.**
 
 File Review turns a local Git inventory into a ready-to-copy review briefing for your coding agent. Add what you want to change, inspect the evidence when needed, and ask for a reasoned decision: split, keep, combine, or simply read more selectively. The workflow is the same for every readable text file, regardless of programming language.
@@ -8,7 +10,14 @@ File Review turns a local Git inventory into a ready-to-copy review briefing for
 
 No AI service, runtime Python dependencies, background server, telemetry or project changes. Python 3.9+ and Git are required. Designed for macOS and Linux; native Windows is rejected because the safe file reader needs POSIX features. WSL may work but has not been verified.
 
-## Try it in one command
+## Try the synthetic demo
+
+Get the public source:
+
+```sh
+git clone https://github.com/Belalkf/file-review-local.git
+cd file-review-local
+```
 
 From this checkout, preview a synthetic report without reading any repository:
 
@@ -72,6 +81,10 @@ The example configuration is a template: create your own paths first. Paths in a
 Reports include repository names, absolute root paths, filenames, measurements, content fingerprints and any task you enter; they exclude source contents. Treat real reports as private. The report contacts no external service, but copying a request into another tool shares those paths with that tool. Default reports are unique private files in the system temporary folder and are not automatically deleted; remove them when finished. Refresh by running a new scan: browser reload keeps the same snapshot.
 
 Only valid UTF-8 without NUL bytes is measured. Blank lines and comments count. Default limits: 16 MiB per file, 60 seconds total, 100,000 attempted paths. Symlinks are not followed; submodules are not traversed. Changed, missing, linked, oversized and unreadable files remain explicit gaps. A stalled filesystem read can exceed the time budget; this is a cooperative bound, not a hard real-time guarantee. See [measurement and safety](docs/behavior.md) for exact coverage and exit codes.
+
+## Public history
+
+This is the initial public snapshot of a previously private tool. Private development history and configuration are intentionally excluded. Future changes are recorded here.
 
 ## Project guide
 

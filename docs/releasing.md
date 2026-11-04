@@ -5,12 +5,12 @@
 1. Run the tests and `python3 scripts/check_public.py`. Review all tracked text, images, package contents and Git metadata; a pattern scanner cannot prove the absence of all secrets.
 2. Confirm `git log --all --format=fuller` contains only this public edition and identities you intend to publish. This checkout must not share the private tool's object database, remotes or history.
 3. Run the synthetic demo. Never commit or upload a real project's report, screenshot, absolute path or local configuration.
-4. Choose the GitHub repository slug `file-review` if available in your account. This name is descriptive; no global trademark or package-name exclusivity is claimed.
-5. Create an **empty** GitHub repository without generated README/license commits. Add that URL as `origin` in this checkout, then push `main` yourself. No publish action is part of preparing this repository.
+4. The public repository slug is `file-review-local`; the original private tool keeps its own repository. This name is descriptive; no global trademark or package-name exclusivity is claimed.
+5. Create an **empty** GitHub repository without generated README/license commits. Add that URL as `origin` in this checkout, then push `main` only when publication is authorized. Do not change the original private repository or its visibility.
 6. Enable GitHub private vulnerability reporting; review Actions permissions and branch protection appropriate to your account. No credentials are required by the supplied checks.
 7. Use the description: “Local, language-independent review briefings for thoughtful code restructuring.” Suggested topics: `python`, `developer-tools`, `git`, `code-quality`, `local-first`.
 
-The initial local commit uses a neutral contributor identity to avoid disclosing an address. GitHub will not automatically attribute that commit to your profile. Future authorship should use your chosen public identity or GitHub-provided private email. An account URL and public credit are intentionally not guessed or embedded.
+The initial local commit uses a neutral contributor identity to avoid disclosing an address. GitHub will not automatically attribute that commit to your profile. Later publication-preparation commits use the verified maintainer account and its GitHub-provided private email. Configure a repository-local public identity before future commits; never reuse a personal email accidentally. The public source is [Belalkf/file-review-local](https://github.com/Belalkf/file-review-local).
 
 ## Checks for later releases
 
