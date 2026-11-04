@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Simplify the optional skill's CLI installation using the published PyPI package.
+- Document the publishing environment's restriction to the main branch.
 
 ## 0.1.0 — initial public edition
 
