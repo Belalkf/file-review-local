@@ -2,9 +2,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const {execFileSync} = require('node:child_process');
-const html = execFileSync(process.env.PYTHON || 'python3', ['-c',
+const html = execFileSync('python3', ['-c',
   'from file_review.demo import example_report; from file_review.render import render; print(render(example_report()))'],
-  {cwd: path.join(__dirname, '..'), encoding: 'utf8'});
+  {cwd: path.join(__dirname, '..'), encoding: 'utf8', timeout: 15000});
 const base = JSON.parse(html.split('<script id="data" type="application/json">')[1].split('</script>')[0]);
 
 // An in-memory document exercises local report behavior without a browser,
@@ -35,6 +35,7 @@ function setup(rows, complete = true) {
   get('sort').value = 'review';
   const context = vm.createContext({document: {getElementById: get,
     createElement: () => new Element(), createDocumentFragment: () => new Element(true)}, navigator: {}});
+  // Execute only this checkout's trusted report implementation, never scanned project code.
   vm.runInContext(fs.readFileSync(path.join(__dirname, '../file_review/report.js'), 'utf8'), context);
   return {get, click: id => get(id).events.click(),
     input(id, value) {get(id).value = value; get(id).events.input();}};
