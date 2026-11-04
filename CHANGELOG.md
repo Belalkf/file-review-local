@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add an optional agent skill for interpreting local review briefings, with separate installation of the Python command.
+- Verify that a wheel rebuilt from the source archive installs and runs offline.
+
 ## 0.1.0 — initial public edition
 
 - Independent, history-free source snapshot with synthetic examples and no personal project list.

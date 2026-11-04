@@ -35,4 +35,4 @@ python3 -c "from setuptools.build_meta import build_sdist; build_sdist('dist')"
 python3 scripts/check_wheel.py dist
 ```
 
-These builds create local build metadata; they do not publish. The check installs the local wheel without an index in a temporary environment and removes that environment afterward. Run source tests and privacy checks before building.
+These builds create local build metadata; they do not publish. The check builds another wheel from the source archive without an index, installs both wheels in a temporary environment and removes that environment afterward. It requires pip, setuptools and wheel in the calling environment. Run source tests and privacy checks before building. If the skills CLI is already installed, check discovery with `npx --no-install skills add . --list`; do not download it implicitly for tests.

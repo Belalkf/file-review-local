@@ -36,16 +36,36 @@ The checkout can live anywhere: beside your projects, inside one, or in a tools 
 
 ## Install an everyday command
 
-Optional installation from a local checkout, using an existing Python packaging toolchain:
+Install from a local checkout in a new virtual environment. The build-tool step downloads setuptools and wheel; the application has no runtime Python dependencies:
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
+python -m pip install 'setuptools>=58' wheel
 python -m pip install --no-build-isolation --no-deps .
 file-review /path/to/project
 ```
 
-The installer needs setuptools 58+ and wheel already available in that environment. If they are missing, install them explicitly with `python -m pip install 'setuptools>=58' wheel`; that command downloads build tools. The application itself uses only the Python standard library. Run from source if you want no packaging setup. There is no published PyPI release; the distribution name `file-review-local` is local metadata, not a claim to a reserved registry name.
+If setuptools 58+ and wheel are already available in your chosen environment, skip the build-tool download. Run from source if you want no packaging setup. There is no published PyPI release; the distribution name `file-review-local` is local metadata, not a claim to a reserved registry name.
+
+Alternatively, with Git and the build tools already installed, install directly from the public GitHub repository into an activated virtual environment:
+
+```sh
+python -m pip install --no-build-isolation --no-deps 'git+https://github.com/Belalkf/file-review-local.git'
+file-review --version
+```
+
+This downloads the current default branch; use a reviewed commit or release tag after `@` in the URL to pin a version. The GitHub source and a future PyPI release are separate distribution choices; no PyPI package is claimed or published yet.
+
+## Optional coding-agent skill
+
+The optional [File Review skill](skills/file-review/SKILL.md) helps an agent run the command, interpret coverage and inspect the actual code before proposing changes. It adds a reusable workflow and discovery; the existing CLI and copyable briefing work without it. Install the Python command separately as above, then from the project where you use your agent run:
+
+```sh
+npx skills add Belalkf/file-review-local
+```
+
+Choose the skill and agent when prompted. The skills CLI requires Node.js and downloads its own package and the skill; it does not install the Python executable. This command can discover the skill after these changes are published to the public repository. See [agent integration](docs/usage.md#optional-agent-skill) for local discovery and privacy limits.
 
 ## What you get
 

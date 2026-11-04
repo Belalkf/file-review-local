@@ -23,7 +23,9 @@ The report-control JavaScript stays together because its filter, selection and p
 
 ## Distribution
 
-`pyproject.toml` selects the setuptools backend; `setup.cfg` owns metadata, package assets and the `file-review` entry point. This uses the locally available packaging toolchain without requiring modern metadata support in the runtime interpreter. Runtime dependencies are empty. Both wheel and source archive must contain the three report assets. Distribution metadata deliberately has no personal author, email or guessed GitHub URL.
+`pyproject.toml` selects the setuptools backend; `setup.cfg` owns metadata, package assets and the `file-review` entry point. This uses the locally available packaging toolchain without requiring modern metadata support in the runtime interpreter. Runtime dependencies are empty. Both wheel and source archive must contain the three report assets. The source archive also carries the optional skill; the Python wheel need not install agent instructions. Distribution metadata has no personal author or email.
+
+The standalone CLI is the primary product. A small optional skill in `skills/file-review/` makes its workflow discoverable to compatible agents and adds no application logic or runtime dependency. It stays with the tool so instructions and behavior can be reviewed together. The existing copyable briefing remains useful without an agent skill. GitHub installation is available now; PyPI may offer simpler versioned installation after a separately authorized release and name review.
 
 ## Public boundary
 
