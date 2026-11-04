@@ -7,7 +7,7 @@
 3. Run the synthetic demo. Never commit or upload a real project's report, screenshot, absolute path or local configuration.
 4. The public repository slug is `file-review-local`; the original private tool keeps its own repository. This name is descriptive; no global trademark or package-name exclusivity is claimed.
 5. Create an **empty** GitHub repository without generated README/license commits. Add that URL as `origin` in this checkout, then push `main` only when publication is authorized. Do not change the original private repository or its visibility.
-6. Enable GitHub private vulnerability reporting; review Actions permissions and branch protection appropriate to your account. No credentials are required by the supplied checks.
+6. Preserve the [GitHub protections](hosting.md), verify them with `python3 scripts/check_hosting.py` and use a pull request for changes to `main`. No credentials are required by the supplied checks.
 7. Use the description: “Local, language-independent review briefings for thoughtful code restructuring.” Suggested topics: `python`, `developer-tools`, `git`, `code-quality`, `local-first`.
 
 The initial local commit uses a neutral contributor identity to avoid disclosing an address. GitHub will not automatically attribute that commit to your profile. Later publication-preparation commits use the verified maintainer account and its GitHub-provided private email. Configure a repository-local public identity before future commits; never reuse a personal email accidentally. The public source is [Belalkf/file-review-local](https://github.com/Belalkf/file-review-local).

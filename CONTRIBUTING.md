@@ -17,6 +17,8 @@ Node 20+ is needed only for report-control tests. Python tests use temporary syn
 
 ## Changes and reports
 
+Use a feature branch and a pull request: `main` blocks direct pushes, force pushes and deletion. Resolve review conversations and wait for the required checks against the current base before merging. Human approval is optional for the solo maintainer; automated checks do not replace review. See [GitHub protections](docs/hosting.md) for the maintained policy.
+
 For a defect, describe the visible problem, add a failing regression, make the smallest coherent repair and rerun the affected tests. Review related failure paths and the complete diff before delivery. Documentation and interface text stay in English, with clear responsibilities and unwrapped paragraphs. Do not add dependencies or network behavior without a concrete need.
 
 Use the GitHub issue forms for bugs and features. Share synthetic filenames and redacted diagnostics only. Describe OS, Python/Git versions, command, expected result, actual result and exit code. Avoid uploading private reports. Send security concerns through [SECURITY.md](SECURITY.md).

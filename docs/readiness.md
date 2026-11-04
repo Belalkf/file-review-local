@@ -39,6 +39,12 @@ The archive includes the tests, their browser harness and release-check scripts 
 
 Node 22 runs the report tests. These are standard hosted GitHub runners; no local virtual machine was installed. The README badge shows the latest workflow state; the linked run preserves the exact tested source and result. Linux browser appearance and screen-reader behavior were not tested by the command-line checks.
 
+## Hosting hardening
+
+The active [main-safety ruleset](https://github.com/Belalkf/file-review-local/rules/26497760) protects the default branch, with no bypass actors. [GitHub protections](hosting.md) owns the rules, dependency monitoring, CodeQL, secret scanning and workflow permissions. The read-only public branch audit has regressions for unprotected and weakened policies. Local tests now include that audit and total 50 Python cases; the original 45-test source result above remains historical evidence for its exact commit.
+
+CodeQL's initial hosted analysis passed for Python, JavaScript/TypeScript and GitHub Actions: [configuration validation](https://github.com/Belalkf/file-review-local/actions/runs/41748363300). The broader local-input configuration also passed [run 41748650754](https://github.com/Belalkf/file-review-local/actions/runs/41748650754). The protected contribution journey is recorded in [pull request 4](https://github.com/Belalkf/file-review-local/pull/4), including the platform, packaging, dependency-review and CodeQL results required before merge. The report harness also has an executable-selection regression, bringing current report tests to 13 cases. Reviewed scanner findings and their trust boundaries are recorded in [GitHub protections](hosting.md#reviewed-scanner-findings). Enabling a setting alone is not evidence that its checks passed.
+
 ## Missing and unverified
 
 There is no language parser, dependency graph, automatic responsibility detection, automatic refactoring, agent execution, cloud integration or demonstrated token saving. The starter scope uses size and path hints; adding a task does not automatically identify relevant files. The chosen agent needs access to source and must validate boundaries itself.
