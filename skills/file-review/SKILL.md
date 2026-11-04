@@ -9,13 +9,12 @@ Use the separately installed `file-review` command to create an offline starting
 
 ## Command dependency
 
-If `file-review` is unavailable, provide these installation commands for an environment with Python and Git. They download build tools and the public source. Install only when the user's existing authorization permits it; otherwise let the user run them. Use a reviewed commit or tag after `@` in the Git URL when a pinned version is required.
+If `file-review` is unavailable, provide these installation commands for an environment with Python and Git. They download the published Python package from PyPI. Install only when the user's existing authorization permits it; otherwise let the user run them. Use an exact release such as `file-review-local==0.1.0` when a pinned version is required.
 
 ```sh
 python3 -m venv /path/to/new-file-review-venv
 . /path/to/new-file-review-venv/bin/activate
-python -m pip install 'setuptools>=58' wheel
-python -m pip install --no-build-isolation --no-deps 'git+https://github.com/Belalkf/file-review-local.git'
+python -m pip install file-review-local
 file-review --version
 ```
 
