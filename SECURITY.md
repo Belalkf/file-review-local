@@ -4,7 +4,7 @@ The current 0.1.x line receives fixes on a best-effort basis. No audit, sandbox 
 
 ## Reporting a vulnerability
 
-Use the repository's GitHub **Security → Advisories → Report a vulnerability** option when enabled. If it is unavailable, open an issue asking for a private reporting channel without publishing exploit details, private paths or source contents. A maintainer must enable private vulnerability reporting after publication; no personal email or external reporting service is embedded here.
+Private vulnerability reporting is enabled for the public repository. Use **Security → Advisories → Report a vulnerability** on [GitHub](https://github.com/Belalkf/file-review-local/security/advisories). If it is unavailable, open an issue asking for a private reporting channel without publishing exploit details, private paths or source contents. No personal email or external reporting service is embedded here.
 
 ## Trust boundary
 

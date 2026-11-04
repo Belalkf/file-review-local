@@ -1,6 +1,6 @@
-# Local release readiness
+# Release readiness
 
-This is an initial public source edition prepared on November 4, 2026. It is ready for review and a first GitHub publication; no remote repository, hosted release, registry upload or hosted CI result was created by preparation.
+The initial public source edition was published on November 4, 2026 at [Belalkf/file-review-local](https://github.com/Belalkf/file-review-local). The original tool remains private. No hosted release or registry upload has been created.
 
 ## Implemented
 
@@ -26,10 +26,23 @@ On macOS with Python 3.9.6, Git 2.39.5 and Node 23.5.0:
 
 The archive includes the tests, their browser harness and release-check scripts so contributors can reproduce the documented checks. No real project report or source body is included in the public snapshot. Review the complete source and intended Git identity again before publication; automated patterns cannot certify privacy.
 
+## Executed on GitHub
+
+[Checks run 41746253412](https://github.com/Belalkf/file-review-local/actions/runs/41746253412) passed for source commit `77489f94874bbb54a6381548505d5e5c50216c55` on November 4, 2026. Job logs confirm 45 Python tests, 12 report-control tests, the public-source guard, wheel/source builds and isolated installed-command checks in every combination below.
+
+| GitHub runner | Python | Result |
+| --- | --- | --- |
+| `ubuntu-latest` | 3.9 | Passed |
+| `ubuntu-latest` | 3.13 | Passed |
+| `macos-latest` | 3.9 | Passed |
+| `macos-latest` | 3.13 | Passed |
+
+Node 22 runs the report tests. These are standard hosted GitHub runners; no local virtual machine was installed. The README badge shows the latest workflow state; the linked run preserves the exact tested source and result. Linux browser appearance and screen-reader behavior were not tested by the command-line checks.
+
 ## Missing and unverified
 
 There is no language parser, dependency graph, automatic responsibility detection, automatic refactoring, agent execution, cloud integration or demonstrated token saving. The starter scope uses size and path hints; adding a task does not automatically identify relevant files. The chosen agent needs access to source and must validate boundaries itself.
 
-Linux, other Python/Node/browser versions, native Windows, WSL, mobile layout, screen-reader quality and hostile-filesystem behavior were not accepted by these local checks. Native Windows is intentionally rejected. macOS/Linux CI is configured but must run on GitHub after publication. Project-name availability, public-account attribution, private vulnerability reporting and account protection settings require the actual destination account. A custom logo is optional and has not been created.
+Python/Node/browser versions beyond those recorded above, native Windows, WSL, mobile layout, screen-reader quality and hostile-filesystem behavior were not accepted by these checks. Native Windows is intentionally rejected. A custom logo is optional and has not been created. Repository description, topics and commit attribution are set, and private vulnerability reporting is enabled; account-wide protection settings are outside this release.
 
-Original private tool history/configuration was not imported. This checkout began with an empty Git object store and no remote. The initial public commit uses a neutral contributor identity; see [publication](releasing.md) before choosing future public authorship.
+Original private tool history/configuration was not imported. This checkout began with an empty Git object store and no remote; its public remote was added only for the authorized publication. The initial public commit uses a neutral contributor identity; see [publication](releasing.md) before choosing future public authorship.
