@@ -15,6 +15,7 @@ Use a feature branch, open a pull request, inspect its changes and checks, then 
 | Protection | Configuration and boundary |
 | --- | --- |
 | Dependabot alerts | Enabled; identifies known vulnerable dependencies recognized by GitHub's dependency graph |
+| Malware alerts | Enabled for dependencies recognized by GitHub; this is separate from vulnerability alerts |
 | Dependabot security updates | Enabled; proposes fixes as pull requests, without automatic merging |
 | Version updates | Weekly for GitHub Actions and Python build tools; compatible minor/patch updates are grouped, with at most three open requests per ecosystem |
 | Dependency review | Pull requests are checked for newly introduced known moderate-or-higher vulnerabilities in runtime, development and unknown scopes; missing dependency snapshots can cause a visible failure |
@@ -41,3 +42,9 @@ Policy references: [GitHub rulesets](https://docs.github.com/en/repositories/con
 The local-input threat model also flags maintenance scripts and tests. The test harness’s environment-selected Python executable was removed and its subprocess bounded; a regression confirms an inherited `PYTHON` value cannot select another program. Alert 1 is resolved by that code change, rather than dismissing it.
 
 Alert 2 concerns the test harness intentionally evaluating this checkout’s own `report.js` in an in-memory document. It is classified as test use: scanned repositories and their filenames never supply executable code. The VM is a test harness, not a sandbox for hostile scripts. Alerts 3–6 concern the release checker reading the artifact directory explicitly selected by its operator. That directory is an intentional input, not a path constrained to a server-controlled area; those reports are false positives for this local maintainer command. Only use the release checker with trusted artifacts: it deliberately installs and exercises the wheel. These individual triage decisions do not disable a query, language, threat model or merge gate. Revisit them if these helpers ever accept paths or scripts from an untrusted service.
+
+## Optional features reviewed
+
+AI repository/PR scans, agentic autofix and AI-application scanning previews remain off: this project already has CodeQL and does not execute models or agents. Agentic autofix can consume AI credits. Compatible update groups are maintained in the checked-in Dependabot configuration. A blank new-ruleset form starts disabled and does not show the saved active main-safety policy; inspect the existing rule from the repository rules list.
+
+Build checks use isolated wheel builds so the declared build requirements are resolved on every supported Python version. A successful build using preinstalled tools alone could conceal an incompatible new minimum. Setuptools 84.2.1 requires Python 3.10+, so its proposed minimum is unsuitable while Python 3.9 remains supported; newer Python versions can still resolve newer build tools from the existing minimum.

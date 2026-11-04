@@ -93,3 +93,20 @@ class ReviewTests(unittest.TestCase):
                 main(['--task', 'x' * 2001])
         self.assertEqual(error.exception.code, 2)
         scan.assert_not_called()
+
+    def test_common_guidance_is_not_repeated_per_file(self):
+        report = example_report()
+        report['rows'] = [dict(report['rows'][0], path=f'file{i}.rs', sha256='a' * 64)
+                          for i in range(12)]
+        enrich(report)
+        text = briefing(report)
+        self.assertEqual(text.count('Choose split, retain, combine'), 1)
+        self.assertEqual(text.count('Measured SHA-256:'), 12)
+        self.assertNotIn('  Next:', text)
+        self.assertIn('No model was called', text)
+
+    def test_format_hint_survives_compact_briefing(self):
+        from file_review.briefing import row_briefing
+        report = example_report()
+        enrich(report)
+        self.assertIn('Path hint:', row_briefing(report['rows'][3]))

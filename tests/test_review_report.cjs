@@ -35,3 +35,16 @@ test('empty inventory produces useful caution instead of an empty request', () =
   assert.match(ui.get('request').value, /No measured text files/);
   assert.match(ui.get('request').value, /not a clean bill of health/);
 });
+
+test('copied request keeps facts and format warnings without repeating evidence instructions', () => {
+  const rows = Array.from({length: 12}, (_, i) => ({...row(`file${i}.rs`, 400, 2000, 80),
+    sha256: 'a'.repeat(64), review: {action: i ? 'inspect' : 'check-owner',
+      summary: 'REPEATED SUMMARY', steps: ['REPEATED STEP']}}));
+  const ui = setup(rows);
+  const request = ui.get('request').value;
+  assert.equal((request.match(/Choose split, retain, combine/g) || []).length, 1);
+  assert.equal((request.match(/Measured SHA-256:/g) || []).length, 12);
+  assert.match(request, /Path hint: inspect format or producer/);
+  assert.doesNotMatch(request, /REPEATED SUMMARY|REPEATED STEP/);
+  assert.match(request, /No model was called/);
+});
