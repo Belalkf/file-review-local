@@ -1,0 +1,10 @@
+name: Feature request
+description: Explain a user problem and a bounded improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would this help you do?
+      description: Include the current workaround and privacy/resource implications.
+    validations:
+      required: true

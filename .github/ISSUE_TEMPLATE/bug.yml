@@ -1,0 +1,19 @@
+name: Bug report
+description: Report incorrect behavior with synthetic or redacted examples.
+body:
+  - type: markdown
+    attributes:
+      value: Never include real reports, private paths or source content. Use SECURITY.md for vulnerabilities.
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, command and exit code
+      description: Use synthetic paths. Include expected and actual behavior.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS, Python and Git versions
+    validations:
+      required: true
