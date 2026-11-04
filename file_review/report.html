@@ -5,9 +5,9 @@
 <body><main>
 <div class="eyebrow">LOCAL TOOLS / FILE REVIEW</div>
 <h1>Find the files worth a closer look.</h1>
-<p class="intro">Understand possible boundaries, reasons to keep files together, and where focused reading may be enough. Nothing here starts an agent or changes your projects.</p>
+<p class="intro">Measure local files, choose a starting scope, and prepare a request for your coding agent.</p>
 <p id="snapshot"></p><div id="coverage" role="status"></div>
-<section class="brief"><h2>Start with the decision, not a line limit.</h2><p id="analysis-summary"></p><p>A starter request is ready below. Add your goal or select files; ask your agent to inspect the evidence and return a decision before editing. <a href="#next-request">Go to your request ↓</a></p><details><summary>Evidence and analysis limits</summary><pre id="analysis-details"></pre></details></section>
+<section class="brief"><h2>From local measurements to a reasoned review.</h2><p id="analysis-summary"></p><p>A starter request is ready below. Add your goal or select files; ask your agent to inspect the evidence and return a decision before editing. <a href="#next-request">Go to your request ↓</a></p><details><summary>Evidence and analysis limits</summary><pre id="analysis-details"></pre></details></section>
 <details><summary>What this scan includes and leaves out</summary><p>Current working copies of tracked UTF-8 text. Blank lines and comments count. File size and longest line are bytes, not tokens. Size suggests a review; it does not prove a file should be split. Archives, lockfiles and tracked generated files stay visible. Binary and non-UTF-8 files are excluded. Links, unreadable files, changed files and scan limits appear below. Run the launcher again for fresh results; reloading this page keeps this snapshot.</p><div id="statuses"></div></details>
 <section class="filters" aria-label="File filters">
 <label>Project<select id="repo"><option value="">All projects</option></select></label>
@@ -15,10 +15,10 @@
 <label>At least lines<input id="lines" type="number" min="0" value="150"></label>
 <label>Or size (KiB)<input id="bytes" type="number" min="0" value="32"></label>
 <label>Or longest line (bytes)<input id="longest" type="number" min="0" value="1000"></label>
-<label>Sort by<select id="sort"><option value="review">Review priority</option><option value="lines">Most lines</option><option value="bytes">Largest size</option><option value="longest_line">Longest line</option><option value="path">File path</option></select></label>
+<label>Sort by<select id="sort"><option value="review">Starting order</option><option value="lines">Most lines</option><option value="bytes">Largest size</option><option value="longest_line">Longest line</option><option value="path">File path</option></select></label>
 </section>
 <div class="actions"><button id="all">Show all sizes</button><button id="select">Select visible</button><button id="clear">Clear selection</button><span id="count" aria-live="polite"></span></div>
-<div class="table-wrap"><table><thead><tr><th scope="col">Pick</th><th scope="col">Project / file</th><th scope="col">Lines</th><th scope="col">Size (KiB)</th><th scope="col">Longest line (bytes)</th><th scope="col">Review route</th></tr></thead><tbody id="files"></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th scope="col">Pick</th><th scope="col">Project / file</th><th scope="col">Lines</th><th scope="col">Size (KiB)</th><th scope="col">Longest line (bytes)</th><th scope="col">Local hint</th></tr></thead><tbody id="files"></tbody></table></div>
 <div class="actions"><button id="more" hidden>Show 250 more</button><span id="page-count"></span></div>
 <section class="request" id="next-request"><h2>Your next request</h2><p>A bounded briefing is ready without selecting files. Select files to narrow it; hidden selections are retained. Review the text before sharing paths or your task description.</p><label for="task">What are you trying to change? (optional)<textarea id="task" maxlength="2000" rows="2" placeholder="e.g. Make export changes easier to test"></textarea></label><p id="brief-count" aria-live="polite"></p><label for="request">Request text</label><textarea id="request" readonly rows="12" placeholder="Select files above to prepare a request."></textarea><div class="actions"><button id="copy">Copy request</button><span id="copy-status" role="status"></span></div></section>
 <noscript>This report needs JavaScript for local filters. Use --terminal for a text report.</noscript>

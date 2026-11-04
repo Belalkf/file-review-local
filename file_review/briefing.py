@@ -17,17 +17,13 @@ GUIDANCE = (
 
 
 def row_briefing(row):
-    review = row.get("review", {})
-    lines = [f"{json.dumps(row['path'], ensure_ascii=True)}: {review.get('action', 'inspect')} — "
-             f"{review.get('summary', 'Measurements only; inspect responsibilities manually.')}"]
-    lines.append(f"Measured: {row['lines']} lines; {row['bytes']} bytes; "
-                 f"longest line {row['longest_line']} bytes (not tokens).")
+    lines = [json.dumps(row['path'], ensure_ascii=True),
+             f"Measured: {row['lines']} lines; {row['bytes']} bytes; "
+             f"longest line {row['longest_line']} bytes (not tokens)."]
     if row.get("sha256"):
-        lines.append(f"Measured SHA-256: {row['sha256']}; recheck current content before acting.")
-    for step in review.get("steps", []):
-        lines.append("  Next: " + step)
-    if review.get("related"):
-        lines.append("  Nearby small files (adjacency only): " + json.dumps(review["related"], ensure_ascii=True))
+        lines.append(f"Measured SHA-256: {row['sha256']}")
+    if row.get("review", {}).get("action") == "check-owner":
+        lines.append("Path hint: inspect format or producer before changing generated or connected content.")
     return "\n".join(lines)
 
 
@@ -42,7 +38,9 @@ def priority(row):
 
 def introduction(report):
     result = ["# Review briefing", GUIDANCE,
-              "This is a static review brief, not authorization or a verified refactoring plan.",
+              "This is an automatically assembled local brief, not authorization or a verified refactoring plan. "
+              "No model was called. The receiving agent must read the source and judge responsibilities. "
+              "Recheck current contents against measured fingerprints before acting.",
               "Return a short decision table: file/group, split/keep/combine/read selectively, evidence, "
               "proposed boundary, risks and checks. Mark missing evidence and stop unsafe moves.",
               "Then implement only changes authorized by the user and project rules. "
