@@ -17,3 +17,7 @@ HTML payloads escape markup, labels use text nodes and the report's content poli
 ## Files created
 
 HTML output uses exclusive creation and owner-only permissions on supported systems. Existing paths are never replaced by the tool. Real reports are not automatically deleted. Output write failures may leave a partial owned file; remove it before retrying. JSON written by shell redirection inherits your shell's behavior. Do not publish real scan output in issues, screenshots or commits.
+
+## Repository safeguards
+
+[GitHub protections](docs/hosting.md) records branch protection, dependency alerts and update requests, CodeQL, secret scanning, workflow access and their limits. Maintainers should preserve those gates when changing workflows.
