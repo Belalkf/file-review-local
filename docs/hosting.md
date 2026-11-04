@@ -33,18 +33,16 @@ Existing provider-pattern secret scanning and push protection are kept enabled. 
 
 ## Verification
 
-The repository reports `main` as protected, and the effective public rules pass `scripts/check_hosting.py`. The security settings were read back after changes. Hosted scan results and the first protected pull-request journey are linked from [release readiness](readiness.md); a feature being enabled is separate from its analysis succeeding.
+The repository reports `main` as protected, and the effective public rules pass `scripts/check_hosting.py`. The security settings were read back after changes. The [verification guide](readiness.md) explains tested platforms and evidence limits; workflow runs and pull requests record actual results. A feature being enabled is separate from its analysis succeeding.
 
 Policy references: [GitHub rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets), [dependency review](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review), and [CodeQL default setup](https://docs.github.com/en/code-security/how-tos/find-and-fix-code-vulnerabilities/configure-code-scanning/configure-code-scanning).
 
-## Reviewed scanner findings
+## Scanner trust boundaries
 
-The local-input threat model also flags maintenance scripts and tests. The test harness’s environment-selected Python executable was removed and its subprocess bounded; a regression confirms an inherited `PYTHON` value cannot select another program. Alert 1 is resolved by that code change, rather than dismissing it.
-
-Alert 2 concerns the test harness intentionally evaluating this checkout’s own `report.js` in an in-memory document. It is classified as test use: scanned repositories and their filenames never supply executable code. The VM is a test harness, not a sandbox for hostile scripts. Alerts 3–6 concern the release checker reading the artifact directory explicitly selected by its operator. That directory is an intentional input, not a path constrained to a server-controlled area; those reports are false positives for this local maintainer command. Only use the release checker with trusted artifacts: it deliberately installs and exercises the wheel. These individual triage decisions do not disable a query, language, threat model or merge gate. Revisit them if these helpers ever accept paths or scripts from an untrusted service.
+The report-test harness evaluates this checkout's trusted `report.js`; scanned repositories never supply executable code. Its subprocess uses a fixed executable and a timeout. The VM is a test harness, not a sandbox for hostile scripts. The release checker intentionally reads and installs artifacts from the operator-selected directory: use it only with trusted packages. Test-use and local-path scanner classifications depend on these boundaries; revisit them if untrusted service inputs are introduced. Do not disable a scanner query or merge gate to clear findings.
 
 ## Optional features reviewed
 
-AI repository/PR scans, agentic autofix and AI-application scanning previews remain off: this project already has CodeQL and does not execute models or agents. Agentic autofix can consume AI credits. Compatible update groups are maintained in the checked-in Dependabot configuration. A blank new-ruleset form starts disabled and does not show the saved active main-safety policy; inspect the existing rule from the repository rules list.
+CodeQL covers the implemented languages. Additional AI scans and agentic repair remain off because billable usage has not been authorized; AI-application inventory is inapplicable because the tool does not run models or agents. Whether AI-assisted code scanning would help is a separate coverage/cost decision. Compatible update groups are maintained in the checked-in Dependabot configuration.
 
-Build checks use isolated wheel builds so the declared build requirements are resolved on every supported Python version. A successful build using preinstalled tools alone could conceal an incompatible new minimum. Setuptools 84.2.1 requires Python 3.10+, so its proposed minimum is unsuitable while Python 3.9 remains supported; newer Python versions can still resolve newer build tools from the existing minimum.
+Build checks use isolated wheel builds so the declared build requirements are resolved on every supported Python version. A successful build using preinstalled tools alone could conceal an incompatible new minimum. Review build-tool minimums against the oldest supported Python; newer interpreters may still resolve newer tools from a compatible minimum.

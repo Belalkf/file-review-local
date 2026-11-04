@@ -90,4 +90,4 @@ This is the initial public snapshot of a previously private tool. Private develo
 
 [Usage and troubleshooting](docs/usage.md) · [Architecture](docs/architecture.md) · [Contributing and tests](CONTRIBUTING.md) · [Security](SECURITY.md) · [Release checklist](docs/releasing.md) · [Changelog](CHANGELOG.md)
 
-Early public version, licensed under [MIT](LICENSE). Local and hosted checks, tested platforms and remaining limits are recorded in [release readiness](docs/readiness.md).
+Early public version, licensed under [MIT](LICENSE). See [supported platforms and verification limits](docs/readiness.md) before relying on platform or testing claims.

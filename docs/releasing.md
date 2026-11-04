@@ -1,27 +1,17 @@
-# Publication and release checklist
+# Maintainer release guide
 
-## Before the first GitHub push
+## Review the public boundary
 
-1. Run the tests and `python3 scripts/check_public.py`. Review all tracked text, images, package contents and Git metadata; a pattern scanner cannot prove the absence of all secrets.
-2. Confirm `git log --all --format=fuller` contains only this public edition and identities you intend to publish. This checkout must not share the private tool's object database, remotes or history.
-3. Run the synthetic demo. Never commit or upload a real project's report, screenshot, absolute path or local configuration.
-4. The public repository slug is `file-review-local`; the original private tool keeps its own repository. This name is descriptive; no global trademark or package-name exclusivity is claimed.
-5. Create an **empty** GitHub repository without generated README/license commits. Add that URL as `origin` in this checkout, then push `main` only when publication is authorized. Do not change the original private repository or its visibility.
-6. Preserve the [GitHub protections](hosting.md), verify them with `python3 scripts/check_hosting.py` and use a pull request for changes to `main`. No credentials are required by the supplied checks.
-7. Use the description: “Local, language-independent review briefings for thoughtful code restructuring.” Suggested topics: `python`, `developer-tools`, `git`, `code-quality`, `local-first`.
+This public edition is independent of the original private tool. Preserve that separation: review patches before transferring changes, never copy private history or configuration, and never automatically synchronize the repositories. Use a repository-local public/noreply identity for both author and committer metadata.
 
-The initial local commit uses a neutral contributor identity to avoid disclosing an address. GitHub will not automatically attribute that commit to your profile. Later publication-preparation commits use the verified maintainer account and its GitHub-provided private email. Configure a repository-local public identity before future commits; never reuse a personal email accidentally. The public source is [Belalkf/file-review-local](https://github.com/Belalkf/file-review-local).
+Review the intended source, Git history, images and packaged assets for private content. Synthetic examples must remain synthetic. A pattern scan cannot certify privacy; reports of real projects contain paths and other private context and must not be included. The [architecture](architecture.md#public-boundary) owns the public source boundary.
 
-## Checks for later releases
+## Prepare a release
 
-Run the full suite, review the complete diff and changed-file responsibilities, then build both a source archive and a wheel. Verify HTML/CSS/JS assets, install the wheel in an isolated environment, and exercise the installed command outside the source folder. Review licenses and network changes if introducing dependencies. Keep the changelog and version aligned.
+1. Run the [contributor checks](../CONTRIBUTING.md), review the complete diff and check compatibility with supported Python versions. Review licences and network behaviour if dependencies change.
+2. Build fresh wheel and source archives, verify report assets, and exercise the installed command outside the checkout using the packaging instructions in Contributing.
+3. Keep the version and [changelog](../CHANGELOG.md) aligned. Describe user-visible changes, fixes, compatibility and remaining limits; leave commit-by-commit execution logs in the pull request and CI.
+4. Use a feature branch and protected pull request. Wait for current-base checks, inspect actual scanner findings and preserve the [hosting policy](hosting.md). Recheck current GitHub options when changing that policy.
+5. Create an annotated version tag and GitHub release only within the authorized publication scope and after its checks pass. Keep published tags stable; fixes belong in later commits/releases.
 
-CI is configured for macOS/Linux and Python 3.9/3.13, with read-only repository permissions, pinned action revisions, time limits and no publishing credentials. Hosted results exist only after GitHub runs it. The local machine cannot substitute for that matrix. The maintainer may later expand the matrix after verifying compatibility.
-
-Use an annotated `v0.1.0` tag and GitHub release only when the checks actually pass. No tag or hosted release is created by the preparation task. A PyPI upload is separate, optional work: first confirm distribution-name availability and use authenticated trusted publishing rather than committing tokens.
-
-## Portfolio wording
-
-Suggested CV bullet, after publication: “Built File Review, a local-first Python tool that turns Git working-copy measurements into language-independent agent review briefings and an offline dashboard, with safe file reads, explicit coverage gaps and regression tests.”
-
-Link the actual public repository. Do not claim adoption numbers, performance savings, a security audit or platform testing that has not happened. This project is intentionally a focused tool; its credibility comes from a clear boundary and demonstrable behavior.
+A PyPI upload is separate, optional work requiring authorization, name-availability checks and secure publisher setup. Source publication does not imply a registry release, adoption, demonstrated savings or an independent security audit.
